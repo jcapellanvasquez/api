@@ -6,6 +6,8 @@ class Welcome extends CI_Controller {
 	function  __construct() {
 		parent::__construct();
 
+
+	//https://getcomposer.org/doc/00-intro.md#installation-windows
 		// Param1 => nombre de la clase modelo
 		// Param2 => valor por defecto
 		// Param3 => boolean para que se conecte a la bd
@@ -40,10 +42,18 @@ class Welcome extends CI_Controller {
 
 	public function set_user() {
 		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Headers: X-Requested-With');
+		header('Access-Control-Allow-Methods: *');
 
 		 if (isset($_POST["user"])) {
 			$params = json_decode($_POST["user"],true);
 			$this->Ejemplo_model->set_user($params);
 		 }
+	}
+
+	
+
+	public function test() {
+		echo "test";
 	}
 }

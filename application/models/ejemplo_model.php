@@ -14,5 +14,21 @@ class Ejemplo_model extends CI_Model {
             "insert into users (nombre,apellido,usuario,correo) values (?,?,?,?)",
             $params);
     }
+
+    
+    
+    public function get_token($params)
+    {
+        $rs = "";
+        $rs = $this->db->query(
+            "select * from users where usuario=? and clave= md5(?)",
+            $params)->result();
+
+        if(count($rs) > 0) {
+            return json_encode($rs);
+        } else {
+            return "";
+        }
+    }
 }
 ?>
