@@ -21,8 +21,11 @@ class Ejemplo_model extends CI_Model {
     {
         $rs = "";
         $rs = $this->db->query(
-            "select * from users where usuario=? and clave= md5(?)",
-            $params)->result();
+            "select usuario, id, nombre,apellido from users where usuario=? and clave= md5(?)",
+            [
+                $params["usuario"], 
+                $params["password"]
+             ])->result();
 
         if(count($rs) > 0) {
             return json_encode($rs);

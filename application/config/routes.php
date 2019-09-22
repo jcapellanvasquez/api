@@ -57,7 +57,7 @@ $route['default_controller/set_user']["POST"] = 'welcome/set_users';
 $route['default_controller/test']["GET"] = 'welcome/test';
 
 $route['Api/test']["GET"] = 'api/test';
-$route['Login/authenticate']["POST"] = 'login/authenticate';
+$route['Login/authenticate']["OPTIONS"] = 'login/authenticate';
 
 $route['404_override'] = 'errors/ci/error_404.php';
 $route['translate_uri_dashes'] = FALSE;

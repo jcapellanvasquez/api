@@ -14,16 +14,20 @@ class Login extends CI_Controller {
 
     public function authenticate() {
 		header('Access-Control-Allow-Origin: *');
-		header('Access-Control-Allow-Headers: X-Requested-With');
-		header('Access-Control-Allow-Methods: *');
+		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		header('Content-Type: application/json');
+
+		
 		$usuario="";
 
-		 if (isset($_POST["user"])) {
-			$params = json_decode($_POST["user"],true);
-			$usuario = $this->Ejemplo_model->get_token($params);
-			echo base64_encode($usuario);
+		 if (isset($_POST["usuario"]) && isset($_POST["usuario"])) {
+			//$params = json_decode($_POST["user"],true);
+			$usuario = $this->Ejemplo_model->get_token($_POST);
+			//base64_encode($usuario)
+			echo json_encode(["response"=> base64_encode($usuario)]);
 		 } else {
-			 echo "variable post vacia";
+			echo json_encode(["response" => "variable post vacia"]);
 		 }
 	}
 
